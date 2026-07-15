@@ -1,438 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Latent Studio — Sarah Moses</title>
-    <!-- Google Fonts: Space Grotesk & JetBrains Mono -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --bg-color: #0f1115;
-            --card-bg: #161920;
-            --accent-color: #6366f1;
-            --accent-glow: rgba(99, 102, 241, 0.15);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --border-color: #262b37;
-            --placeholder-bg: #1e222b;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latent Studio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background: #181818;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Space Grotesk', sans-serif;
-            line-height: 1.6;
-            padding: 2rem 1rem;
-        }
+    .frame {
+      width: 100%;
+      max-width: 1920px;
+      padding: 200px;
+      background: #18181b;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    .subtitle {
+      font-size: 24px;
+      font-weight: 400;
+      color: #ea5808;
+    }
 
-        /* Header Styling */
-        header {
-            margin-bottom: 3.5rem;
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 2.5rem;
-        }
+    .title {
+      font-size: 64px;
+      font-weight: 700;
+      color: #efefef;
+      margin-top: 6px;
+    }
 
-        .project-tag {
-            display: inline-block;
-            background: var(--accent-glow);
-            color: var(--accent-color);
-            padding: 0.25rem 0.75rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 1rem;
-            border: 1px solid rgba(99, 102, 241, 0.3);
-        }
-
-        h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            line-height: 1.1;
-            margin-bottom: 0.5rem;
-            letter-spacing: -0.03em;
-        }
-
-        .subtitle {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        /* Metadata Grid */
-        .metadata-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-        }
-
-        .meta-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .meta-label {
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--text-muted);
-            margin-bottom: 0.25rem;
-        }
-
-        .meta-value {
-            font-size: 1rem;
-            font-weight: 500;
-        }
-
-        /* Action Buttons / Links */
-        .links-group {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: #ffffff;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-1px);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-main);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            background-color: var(--card-bg);
-            border-color: var(--accent-color);
-        }
-
-        /* Content Sections */
-        section {
-            margin-bottom: 4rem;
-        }
-
-        h2 {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 0.75rem;
-            letter-spacing: -0.01em;
-        }
-
-        h3 {
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        p {
-            color: var(--text-muted);
-            margin-bottom: 1.25rem;
-            font-size: 1.05rem;
-        }
-
-        /* Code and Tech Blocks */
-        pre, code {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-        }
-
-        pre {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1.25rem;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            color: #e5e7eb;
-        }
-
-        /* Visual Image Placeholders */
-        .image-placeholder {
-            background-color: var(--placeholder-bg);
-            border: 2px dashed var(--border-color);
-            border-radius: 8px;
-            padding: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-            margin: 1.5rem 0;
-            font-size: 0.9rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-        }
-
-        .image-placeholder::before {
-            content: "📷";
-            font-size: 1.5rem;
-        }
-
-        .image-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .image-grid .image-placeholder {
-            margin: 0;
-        }
-
-        /* Ordered List Styling */
-        ol {
-            list-style: none;
-            counter-reset: steps-counter;
-            margin: 1.5rem 0;
-        }
-
-        ol li {
-            counter-increment: steps-counter;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 1.5rem;
-            border-radius: 10px;
-            margin-bottom: 1rem;
-        }
-
-        ol li::before {
-            content: "0" counter(steps-counter) ". ";
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--accent-color);
-            font-weight: bold;
-            font-size: 1.1rem;
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        ol li h4 {
-            font-size: 1.15rem;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 6rem;
-            padding-top: 2rem;
-            border-top: 1px solid var(--border-color);
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Responsive Adjustments */
-        @media (max-width: 600px) {
-            h1 {
-                font-size: 2.25rem;
-            }
-            body {
-                padding: 1rem 0.5rem;
-            }
-            .metadata-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    .description {
+      font-size: 36px;
+      font-weight: 400;
+      color: #efefef;
+      margin-top: 16px;
+    }
+  </style>
 </head>
 <body>
-
-    <div class="container">
-        
-        <!-- Header Section -->
-        <header>
-            <span class="project-tag">Creative Coding Advanced (BA)</span>
-            <h1>Latent Studio</h1>
-            <p class="subtitle">A User-Facing Image Generation Web App</p>
-
-            <!-- Metadata Cards -->
-            <div class="metadata-grid">
-                <div class="meta-item">
-                    <span class="meta-label">Developer</span>
-                    <span class="meta-value">Sarah Moses</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Semester</span>
-                    <span class="meta-value">Summer Semester 2026</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Institution</span>
-                    <span class="meta-value">TH Nürnberg Georg Simon Ohm</span>
-                </div>
-                <div class="meta-item">
-                    <span class="meta-label">Professor</span>
-                    <span class="meta-value">Moritz Schwind</span>
-                </div>
-            </div>
-
-            <!-- Project CTA Links -->
-            <div class="links-group">
-                <a href="#" class="btn btn-primary" target="_blank">Live-Demo (Colab)</a>
-                <a href="#" class="btn btn-secondary" target="_blank">Web-App Link (Gradio)</a>
-            </div>
-        </header>
-
-        <!-- Main Content -->
-        <main>
-            
-            <!-- Background Section -->
-            <section id="background">
-                <h2>Background</h2>
-                <p>Over the past few years, artificial intelligence has become increasingly present in our daily lives. Many have found new opportunities in this evolving technology, from getting general tasks done faster to supporting the creative process. Since AI became mainstream, image generators have flooded the internet. Nowadays, anyone is able to generate a picture from seemingly nothing.</p>
-                <p>However, most of these generators only let the user input a text description (a so-called "prompt") for the visual they want to create. While users might occasionally be able to change the model or aspect ratio, further control over the resulting image is often lacking. To counter that, the web app <strong>Latent Studio</strong> gives the user more possibilities to influence the final result. With easy-to-understand explanations accompanying the customizable inputs, the web app gives the user the opportunity to understand the process of image generation better, making the creative process more purposeful.</p>
-            </section>
-
-            <!-- Abstract Section -->
-            <section id="abstract">
-                <h2>Abstract</h2>
-                <p>Latent Studio is a web app created with the help of Google Colab, Gradio, Cursor, and Gemini. It is based on the architecture of Stable Diffusion 1.5 and focuses on text-to-image generation. To optimize the user experience, it exposes several easy-to-understand parameters within a clean interface, offering precise control over the resulting image.</p>
-                <p>Users can switch between the basic Stable Diffusion model, which sets a well-trained foundation, and the Dreamshaper model (created by Lykon) for more stylized creations.</p>
-                <p>On top of the model, the user can choose to add a smaller fine-tuned sub-model to get a specific look: the Low-Rank Adaptation, also known as a <strong>LoRA</strong>. How much the selected LoRA influences the result can be changed via the "LoRA Strength" slider, which dynamically appears after selection.</p>
-                <p>Following that, the user can write a prompt for what they want to see in the image and a negative prompt for what they want to avoid. If a LoRA is selected, the according trigger word will automatically be added to the prompt.</p>
-                <p>How many times the AI should improve the image can be changed with the "Steps" slider. Next to it, the user can define how strictly the AI should follow the prompt using the "CFG" (Classifier-Free Guidance) slider. The seed for each generation can be fixed for comparable results or randomized for more variety.</p>
-                <p>Lastly, if the user has a specific composition or object in mind they want to include as accurately as possible, they can enable <strong>ControlNet</strong>. Once enabled, a reference image can be uploaded. The amount of influence this image has on the result is controlled by the "Control Strength" Slider. For this specific ControlNet, the Canny Edge method is used, meaning that the edges of the reference image are extracted to guide the diffusion process. The resulting Canny Edge Map is output alongside the generated image and its metadata.</p>
-            </section>
-
-            <!-- Approach Section -->
-            <section id="approach">
-                <h2>Approach</h2>
-                <p>The general structure of the project was "vibe coded," mostly as a notebook within Google Colab with support from Google Gemini and Claude. Later in the process, I also used Cursor due to the limitations of Google Colab's free plan. The following sections explain the core code structure of the project:</p>
-
-                <ol>
-                    <li>
-                        <h4>Environment Setup</h4>
-                        <p>The purpose of this section is to prepare and install the external code libraries necessary to run machine learning models. Since image generation involves dense mathematical computations, the fastest available processor must be detected and configured. Because I temporarily transitioned to a local workspace using Cursor, the notebook is currently configured for macOS. It actively detects and activates Apple Silicon GPU (MPS) and falls back to NVIDIA GPU (CUDA) or CPU depending on the system hosting it.</p>
-                    </li>
-                    <li>
-                        <h4>Model Initialization</h4>
-                        <p>Here, the base model Stable Diffusion 1.5 and the Dreamshaper model are loaded directly from the AI community platform Hugging Face. Furthermore, the ControlNet is initialized: it loads a Canny Detector preprocessor along with the Canny ControlNet model. This allows the AI to capture outlines from a reference image and use them to guide the layout of the newly generated image.</p>
-                    </li>
-                    <li>
-                        <h4>LoRA (Low-Rank Adaptation)</h4>
-                        <p>Low-Rank Adaptation is a technique that lets you inject specific styles into a base model without having to retrain the entire network. They are highly effective for generating a specific object or aesthetic consistently. I previously trained two custom style LoRAs in a separate Google Colab notebook, resulting in <code>.safetensors</code> files that load in this section. In my dataset used for training, I paired every image with a descriptive text file. All of these files share one unique word in common; when this specific trigger word is present in the prompt, the LoRA activates.</p>
-                        <p>A LoRA is especially useful if the base model cannot generate an object or image style sufficiently on its own. During the conceptual phase, it is vital to compile a large, high-quality dataset. The images should have varying subjects but maintain a highly consistent overall style so the AI learns exactly what aesthetic rules to extract.</p>
-                    </li>
-                </ol>
-
-                <!-- Low Poly LoRA Sub-Section -->
-                <h3>Low Poly LoRA</h3>
-                <p>I wanted to add a style reminiscent of retro computer graphics with a charming, stylized touch. I was specifically drawn to characters and objects from early 2000s Nintendo games. I assembled a dataset of images fitting this exact aesthetic, featuring bright colors and hard edges resulting from low polygon limits. Every image in this dataset displays a single item or character on a clean white background. I used 48 images in total, pairing each with a simple descriptive <code>.txt</code> file to help the LoRA differentiate between the core style and the subject matter.</p>
-                <p>The trigger word defined for this LoRA is: <code>lpyx7 style</code></p>
-                
-                <div class="image-placeholder">Dataset Examples: Low Poly LoRA (White backgrounds, clean geometric edges)</div>
-                <div class="image-placeholder">Example Generations: Low Poly LoRA (Tested with positive prompt additions)</div>
-                <div class="image-placeholder">LoRA Strength Exploration: Low Poly LoRA (Varying strength configurations)</div>
-
-                <!-- Found Footage LoRA Sub-Section -->
-                <h3>Found Footage LoRA</h3>
-                <p>For this LoRA, I wanted to see how accurately a high-contrast flashlight look could be transferred. Most of the training images featured a bright spot in one part of the image that faded into heavy darkness at the edges. I paid close attention to the color palette, as it was crucial for creating a spooky, atmospheric aesthetic. I also sourced different perspectives and subjects to ensure the style itself remained distinct from the objects depicted.</p>
-                <p>The trigger word defined for this LoRA is: <code>FndF0ot4ge</code></p>
-                
-                <div class="image-placeholder">Dataset Examples: Found Footage LoRA (Flashlight halo, dark vignettes, spooky tones)</div>
-                <div class="image-grid">
-                    <div class="image-placeholder">Comparison: Low Poly LoRA vs No LoRA</div>
-                    <div class="image-placeholder">LoRA Strength Exploration: Found Footage</div>
-                </div>
-            </section>
-
-            <!-- Findings Section -->
-            <section id="findings">
-                <h2>Findings</h2>
-                
-                <h3>Extra Descriptive Words in Prompts for Best Results</h3>
-                
-                <h4>Low Poly LoRA</h4>
-                <p>The Low Poly LoRA performed well with just the trigger word (<code>lpyx7 style</code>), but achieved optimal results when "low poly" was explicitly written in the prompt. Because the base model already understands the concept of "low poly," the text prompt reinforced the targeted style of the LoRA. Interestingly, generations with and without the LoRA using "low poly" looked quite similar, though the LoRA generation featured harsher, more defined shadows and a solid colored background reminiscent of the training data layout.</p>
-                
-                <div class="image-placeholder">Visual Comparison: Low Poly LoRA Prompt Evaluations</div>
-
-                <h4>Found Footage LoRA</h4>
-                <p>Conversely, the Found Footage LoRA strictly requires the word "night" in the prompt for the desired effect to occur. Synonyms like "dark" or "darkness" only slightly desaturated the image without achieving the true flashlight aesthetic. Negative prompting for daylight also proved ineffective.</p>
-
-                <div class="image-grid">
-                    <div class="image-placeholder">Result: "night" prompt (Success)</div>
-                    <div class="image-placeholder">Result: without LoRA comparison</div>
-                    <div class="image-placeholder">Result: "dark" prompt</div>
-                    <div class="image-placeholder">Result: "darkness" prompt</div>
-                    <div class="image-placeholder">Result: daytime negative prompt</div>
-                </div>
-
-                <h3>LoRA Strength Evaluation</h3>
-                <p>Through testing, I determined that a strength of <strong>1.3</strong> for the Low Poly LoRA yields the cleanest results, making the style visible even without adding "low poly" to the prompt text. At a strength of 1.5, the structural integrity of the generation begins to degrade.</p>
-
-                <pre><code>// Generation Metadata Configuration
-model_name = 'Base SD 1.5'
-lora_name = 'Low Poly'
-base_prompt = "a watermelon laying on a forest floor"
-seed = 49
-steps = 20
-cfg = 7.5
-num_grid_steps = 10</code></pre>
-            </section>
-
-            <!-- Difficulties Section -->
-            <section id="difficulties">
-                <h2>Difficulties & Challenges</h2>
-
-                <h3>1. Failed LoRA (The Bryce Render Concept)</h3>
-                <p>In the beginning, I attempted to train a LoRA on the aesthetic of old CGI renderings—specifically from the legacy software Bryce 3D. While I loved the style, I realized that the appeal of these images relied heavily on complex, surreal compositions rather than simple shaders or lighting structures. The reference images were too disjointed for the model to effectively extract a cohesive style. This led me to pivot to the Low Poly LoRA, where I could build a cleaner, more uniform dataset.</p>
-                <div class="image-placeholder">Reference: Bryce Render Pack Examples & Generation Validations (Initial rifle generations)</div>
-
-                <h3>2. Trigger Word Conflicts</h3>
-                <p>Defining a unique trigger phrase presented unexpected hurdles. In my first attempt, I used the instance prompt <code>low poly sks</code>. Since "low poly" was part of the trigger, I couldn't test generations without the LoRA active while using those words, preventing an accurate baseline comparison. This prompted me to retrain the LoRA using the fully isolated trigger word <code>lpyx7 style</code>. Because the model has no pre-existing associations with "lpyx7," it does not muddy the generations with prior biases.</p>
-
-                <h3>3. Cropping and Background Behavior</h3>
-                <p>Since the Low Poly dataset consisted entirely of isolated assets centered on clean white backgrounds, the resulting generations often cropped the subject too tightly or scaled it too large. Utilizing the ControlNet Canny Edge function on a low setting helped anchor the composition nicely. Additionally, because the AI struggles with pure white, the generated backgrounds typically output light textures or subtle pastel tones instead of perfect white.</p>
-            </section>
-
-        </main>
-
-        <!-- Footer Section -->
-        <footer>
-            <p>&copy; 2026 Sarah Moses. Built for Creative Coding Advanced (BA).</p>
-        </footer>
-
-    </div>
-
+  <div class="frame">
+    <p class="subtitle">Creative Coding Advanced (BA)</p>
+    <h1 class="title">Latent Studio</h1>
+    <p class="description">A User-Facing Image Generation Web App</p>
+  </div>
 </body>
 </html>
