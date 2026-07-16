@@ -98,7 +98,7 @@
       color: #efefef;
     }
 
-    /* --- LoRa sub-heading with icon --- */
+    /* --- LoRA sub-heading with icon --- */
     .lora-heading {
       display: flex;
       align-items: center;
@@ -282,8 +282,8 @@ a:hover {
     <h2 class="section-heading">Abstract</h2>
     <p>Latent Studio is a web app created with the help of Google Colab, Gradio, Cursor and Gemini. It is based on the architecture of Stable Diffusion 1.5 and focuses on text-to-image generation. The app gives the user not only control over the prompt: To optimize the user experience, it exposes several easy to understand parameters within a clean interface, for more control over the resulting image.</p>
     <p>The user is able to switch between the basic Stable Diffusion model which sets a well trained foundation and the Dreamshaper model (created by Lykon) for more stylized creations.</p>
-    <p>On top of the model, the user can choose to add a smaller fine tuned sub-model to get a specific look: The so called Low-Rank Adaptation also known as <strong>LoRa</strong>. How much the selected LoRa influences the result can be changed via the slider &ldquo;LoRa Strength&rdquo; that appears after selection.</p>
-    <p>After that the user can write a <strong>prompt</strong> for what they want to see in the image and a <strong>negative prompt</strong> for what they want to avoid. If a LoRa is selected, the according trigger word will automatically get added to the prompt.</p>
+    <p>On top of the model, the user can choose to add a smaller fine tuned sub-model to get a specific look: The so called Low-Rank Adaptation also known as <strong>LoRA</strong>. How much the selected LoRA influences the result can be changed via the slider &ldquo;LoRA Strength&rdquo; that appears after selection.</p>
+    <p>After that the user can write a <strong>prompt</strong> for what they want to see in the image and a <strong>negative prompt</strong> for what they want to avoid. If a LoRA is selected, the according trigger word will automatically get added to the prompt.</p>
     <p>How many times the AI should improve the image can be changed with the &ldquo;<strong>Steps</strong>&rdquo; slider. Next to it the user can define how strictly the AI should follow the prompt using the &ldquo;<strong>CFG</strong>&rdquo; (Classifier-Free Guidance) slider. The <strong>seed</strong> for each generation can be fixed for comparable results or randomized for more variety.</p>
     <p>Lastly if the user has a specific composition or object in mind they want to include as accurately as possible, they can enable the &ldquo;<strong>ControlNet</strong>&rdquo;. Afterwards the image that should be used as reference can be uploaded. The amount of influence this image has on the result can be changed with the &ldquo;Control Strength&rdquo; Slider. For this specific ControlNet the Canny Edge method is used, meaning that the edges of the reference image get extracted to guide the diffusion process. The resulting Canny Edge Map gets output alongside the generated image and its meta data.</p>
   </div>
@@ -307,21 +307,21 @@ a:hover {
       <p>Here the base model Stable Diffusion 1.5 and the model Dreamshaper get loaded into the directly from the AI community platform Hugging Face. Furthermore the ControlNet gets initialized: It loads a Canny Detector preprocessor along with the Canny ControlNet model. This allows the AI to capture outlines from a reference image and use them to guide the layout of the newly generated image.</p>
     </div>
 
-    <!-- 3. LoRa -->
+    <!-- 3. LoRA -->
     <div class="card gap-lg">
-      <h3 class="card-title">3. LoRa</h3>
-      <p>Low Rank Adaptation (short LoRa) is a technique that lets you inject specific styles into a base model without having to retrain the entire network. They are also helpful to generate a specific object consistently with high detail. I previously trained two style LoRas in a separate Google Colab notebook, resulting in according .safetensor files that get loaded in this section. In my dataset used for training I added text files describing every image individually. All the text files have one unique word in common, when this specific word is written inside the prompt, the LoRa gets activated.</p>
-      <p>A LoRa is especially useful, if the base model can not generate an object or image style sufficiently. I trained two specific styles that were lacking in the base model and could not be displayed as well as I would have liked. During the conceptual phase it is also important to have in mind that you need a large enough dataset, to base the training on. The images should have varying subjects in it but keep the overall style as consistently as possible so that the AI can learn what to keep.</p>
+      <h3 class="card-title">3. LoRA</h3>
+      <p>Low Rank Adaptation (short LoRA) is a technique that lets you inject specific styles into a base model without having to retrain the entire network. They are also helpful to generate a specific object consistently with high detail. I previously trained two style LoRAs in a separate Google Colab notebook, resulting in according .safetensor files that get loaded in this section. In my dataset used for training I added text files describing every image individually. All the text files have one unique word in common, when this specific word is written inside the prompt, the LoRA gets activated.</p>
+      <p>A LoRA is especially useful, if the base model can not generate an object or image style sufficiently. I trained two specific styles that were lacking in the base model and could not be displayed as well as I would have liked. During the conceptual phase it is also important to have in mind that you need a large enough dataset, to base the training on. The images should have varying subjects in it but keep the overall style as consistently as possible so that the AI can learn what to keep.</p>
 
-      <!-- Low Poly LoRa -->
+      <!-- Low Poly LoRA -->
       <div class="lora-heading">
         <span class="icon">
           <img src="01_assets/02_icons/icon_cube.svg" alt="" />
         </span>
-        <span>Low Poly LoRa</span>
+        <span>Low Poly LoRA</span>
       </div>
-      <p>I wanted to add a style that is reminiscent of old computer graphics but still adds a cute touch. I was specifically drawn to characters and objects from Nintendo games that were popular in the early 2000s since I grew up during that time and played those games. I found a lot of different images fitting this exact style, with bright colors and hard edges resulting from the limited number of polygons that were possible to use back then. Every image in this dataset displays one item or character on white background with the same visual style. I used 48 images in total with describing captions for each image in the form of a simple .txt file. This helps the LoRa differentiate what it should recognize as part of the style and what it should not include. This way the model does not have to guess, resulting in better training.</p>
-      <p>The trigger word I defined for this LoRa is &ldquo;lpyx7 style&rdquo;.</p>
+      <p>I wanted to add a style that is reminiscent of old computer graphics but still adds a cute touch. I was specifically drawn to characters and objects from Nintendo games that were popular in the early 2000s since I grew up during that time and played those games. I found a lot of different images fitting this exact style, with bright colors and hard edges resulting from the limited number of polygons that were possible to use back then. Every image in this dataset displays one item or character on white background with the same visual style. I used 48 images in total with describing captions for each image in the form of a simple .txt file. This helps the LoRA differentiate what it should recognize as part of the style and what it should not include. This way the model does not have to guess, resulting in better training.</p>
+      <p>The trigger word I defined for this LoRA is &ldquo;lpyx7 style&rdquo;.</p>
 
       <p class="label-bold">Dataset examples</p>
       <div class="img-grid">
@@ -355,7 +355,7 @@ a:hover {
           <div class="gen-params">
             <span>Model: Base SD 1.5</span>
              <div class="param-divider"></div>
-            <span>LoRa: Low Poly<br>LoRa Strength: 1</span>
+            <span>LoRA: Low Poly<br>LoRA Strength: 1</span>
              <div class="param-divider"></div>
             <span>Prompt: A palm tree on a deserted island low poly lpyx7 style<br>Negative Prompt: /</span>
              <div class="param-divider"></div>
@@ -373,7 +373,7 @@ a:hover {
           <div class="gen-params">
             <span>Model: Base SD 1.5</span>
              <div class="param-divider"></div>
-            <span>LoRa: Low Poly<br>LoRa Strength: 1.3</span>
+            <span>LoRA: Low Poly<br>LoRA Strength: 1.3</span>
              <div class="param-divider"></div>
             <span>Prompt: a watermelon laying on a forest floor lpyx7 style<br>Negative Prompt: /</span>
              <div class="param-divider"></div>
@@ -391,7 +391,7 @@ a:hover {
           <div class="gen-params">
             <span>Model: Base SD 1.5</span>
              <div class="param-divider"></div>
-            <span>LoRa: Low Poly<br>LoRa Strength: 1</span>
+            <span>LoRA: Low Poly<br>LoRA Strength: 1</span>
              <div class="param-divider"></div>
             <span>Prompt: a cat wearing a hat lpyx7 style<br>Negative Prompt: /</span>
              <div class="param-divider"></div>
@@ -404,16 +404,16 @@ a:hover {
         </div>
       </div>
 
-      <!-- Found Footage LoRa -->
+      <!-- Found Footage LoRA -->
       <div class="lora-heading">
         <span class="icon">
           <img src="01_assets/02_icons/icon_moon.svg" alt="" />
           </svg>
         </span>
-        <span>Found Footage LoRa</span>
+        <span>Found Footage LoRA</span>
       </div>
-      <p>The Found Footage LoRa on the other hand needs &ldquo;night&rdquo; in the prompt for the desired effect. Words meaning similar things like &ldquo;dark&rdquo; or &ldquo;darkness&rdquo; do not work, they just made the palm tree a bit darker and the image overall a bit less saturated (the colors get a bit closer to the trained style but not quite enough). Using &ldquo;sunlight, daytime, daylight&rdquo; in the negative prompt also does not work.</p>
-      <p>The trigger word I defined for this LoRa is &ldquo;ffz8 style&rdquo;.</p>
+      <p>The Found Footage LoRA on the other hand needs &ldquo;night&rdquo; in the prompt for the desired effect. Words meaning similar things like &ldquo;dark&rdquo; or &ldquo;darkness&rdquo; do not work, they just made the palm tree a bit darker and the image overall a bit less saturated (the colors get a bit closer to the trained style but not quite enough). Using &ldquo;sunlight, daytime, daylight&rdquo; in the negative prompt also does not work.</p>
+      <p>The trigger word I defined for this LoRA is &ldquo;ffz8 style&rdquo;.</p>
 
       <p class="label-bold">Dataset examples</p>
       <div class="img-grid">
@@ -447,7 +447,7 @@ a:hover {
           <div class="gen-params">
             <span>Model: Base SD 1.5</span>
              <div class="param-divider"></div>
-            <span>LoRa: Found Footage<br>LoRa Strength: 1.3</span>
+            <span>LoRA: Found Footage<br>LoRA Strength: 1.3</span>
              <div class="param-divider"></div>
             <span>Prompt: A palm tree on a deserted island at night ffz8 style<br>Negative Prompt: /</span>
              <div class="param-divider"></div>
@@ -465,7 +465,7 @@ a:hover {
           <div class="gen-params">
             <span>Model: Base SD 1.5</span>
              <div class="param-divider"></div>
-            <span>LoRa: Found Footage<br>LoRa Strength: 1.3</span>
+            <span>LoRA: Found Footage<br>LoRA Strength: 1.3</span>
              <div class="param-divider"></div>
             <span>Prompt: a watermelon laying on a forest floor at night ffz8 style<br>Negative Prompt: /</span>
              <div class="param-divider"></div>
@@ -483,7 +483,7 @@ a:hover {
           <div class="gen-params">
             <span>Model: Base SD 1.5</span>
              <div class="param-divider"></div>
-            <span>LoRa: Found Footage<br>LoRa Strength: 1.3</span>
+            <span>LoRA: Found Footage<br>LoRA Strength: 1.3</span>
              <div class="param-divider"></div>
             <span>Prompt: a cat wearing a hat at night ffz8 style<br>Negative Prompt: /</span>
              <div class="param-divider"></div>
@@ -500,7 +500,7 @@ a:hover {
     <!-- 4. Gradio Interface -->
     <div class="card">
       <h3 class="card-title">4. Gradio Interface</h3>
-      <p>To bring everything to life I used the Python package Gradio, that makes it possible to quickly build a demo of the web application. Everything that got loaded and all the LoRas trained before are built into a clean interface for the user to navigate through and explore the different options.</p>
+      <p>To bring everything to life I used the Python package Gradio, that makes it possible to quickly build a demo of the web application. Everything that got loaded and all the LoRAs trained before are built into a clean interface for the user to navigate through and explore the different options.</p>
     </div>
   </div>
 
@@ -511,8 +511,8 @@ a:hover {
 
   <!-- Finding 1: Use extra descriptive words -->
   <div class="card gap-lg">
-    <h3 class="card-title">Use extra descriptive words in prompt for best LoRa results</h3>
-    <p>The Low Poly LoRa sometimes works well with just the trained trigger word (&ldquo;lpyx7 style&rdquo;) added at the end of the positive prompt, but it works best if &ldquo;low poly&rdquo; is written in the prompt. I believe that is because the base model already knows the concept &ldquo;low poly&rdquo; and uses this knowledge alongside the LoRa. Both generations (with LoRa vs without LoRa) using &ldquo;low poly&rdquo; in the prompt look very similar. The image generated without the LoRa has slightly more detail in the background, but the subject looks very similar. The images generated with the Low Poly LoRa have harsher shadows and a solid or less detailed background. I think that happens because every image in the training data had a simple white background.</p>
+    <h3 class="card-title">Use extra descriptive words in prompt for best LoRA results</h3>
+    <p>The Low Poly LoRA sometimes works well with just the trained trigger word (&ldquo;lpyx7 style&rdquo;) added at the end of the positive prompt, but it works best if &ldquo;low poly&rdquo; is written in the prompt. I believe that is because the base model already knows the concept &ldquo;low poly&rdquo; and uses this knowledge alongside the LoRA. Both generations (with LoRA vs without LoRA) using &ldquo;low poly&rdquo; in the prompt look very similar. The image generated without the LoRA has slightly more detail in the background, but the subject looks very similar. The images generated with the Low Poly LoRA have harsher shadows and a solid or less detailed background. I think that happens because every image in the training data had a simple white background.</p>
 
     <p class="label-bold">Example Palm tree</p>
     <div class="gen-row2">
@@ -523,7 +523,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: None<br>LoRa Strength: /</span>
+          <span>LoRA: None<br>LoRA Strength: /</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -541,7 +541,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: None<br>LoRa Strength: /</span>
+          <span>LoRA: None<br>LoRA Strength: /</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island low poly<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -559,7 +559,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Low Poly<br>LoRa Strength: 1</span>
+          <span>LoRA: Low Poly<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island lpyx7 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -577,7 +577,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Low Poly<br>LoRa Strength: 1</span>
+          <span>LoRA: Low Poly<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island low poly lpyx7 style<br>Negative Prompt: /</span>
           <span>Seed: 150</span>
@@ -598,7 +598,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: None<br>LoRa Strength: /</span>
+          <span>LoRA: None<br>LoRA Strength: /</span>
            <div class="param-divider"></div>
           <span>Prompt: a watermelon laying on a forest floor<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -616,7 +616,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: None<br>LoRa Strength: /</span>
+          <span>LoRA: None<br>LoRA Strength: /</span>
            <div class="param-divider"></div>
           <span>Prompt: a watermelon laying on a forest floor low poly<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -634,7 +634,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Low Poly<br>LoRa Strength: 1</span>
+          <span>LoRA: Low Poly<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: a watermelon laying on a forest floor lpyx7 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -652,7 +652,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Low Poly<br>LoRa Strength: 1</span>
+          <span>LoRA: Low Poly<br>LoRA Strength: 1</span>
           <div class="param-divider"></div>
           <span>Prompt: a watermelon laying on a forest floor low poly lpyx7 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -665,7 +665,7 @@ a:hover {
       </div>
     </div>
 
-    <p>The Found Footage LoRa on the other hand needs &ldquo;night&rdquo; in the prompt for the desired effect. Words meaning similar things like &ldquo;dark&rdquo; or &ldquo;darkness&rdquo; do not work, they just made the palm tree a bit darker and the image overall a bit less saturated (the colors get a bit closer to the trained style but not quite enough). Using &ldquo;sunlight, daytime, daylight&rdquo; in the negative prompt also does not work.</p>
+    <p>The Found Footage LoRA on the other hand needs &ldquo;night&rdquo; in the prompt for the desired effect. Words meaning similar things like &ldquo;dark&rdquo; or &ldquo;darkness&rdquo; do not work, they just made the palm tree a bit darker and the image overall a bit less saturated (the colors get a bit closer to the trained style but not quite enough). Using &ldquo;sunlight, daytime, daylight&rdquo; in the negative prompt also does not work.</p>
 
     <p class="label-bold">Example Palm tree</p>
     <div class="gen-row2">
@@ -676,7 +676,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island ffz8 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -694,7 +694,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island at night ffz8 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -716,7 +716,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: a watermelon laying on a forest floor ffz8 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -734,7 +734,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: a watermelon laying on a forest floor at night ffz8 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -756,7 +756,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island in the dark ffz8 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -774,7 +774,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island, darkness ffz8 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -792,7 +792,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island, darkness ffz8 style<br>Negative Prompt: sunlight, daytime, daylight</span>
            <div class="param-divider"></div>
@@ -806,10 +806,10 @@ a:hover {
     </div>
   </div>
 
-  <!-- Finding 2: LoRa Strength Limits -->
+  <!-- Finding 2: LoRA Strength Limits -->
   <div class="card gap-lg">
-    <h3 class="card-title">LoRa Strength Limits</h3>
-    <p>Another interesting thing I observed is that both LoRas have different limits regarding the LoRa strength. While the Low Poly LoRa already starts breaking beyond a strength of about 1.5, the Found Footage LoRa can go up to 2 on specific prompts and still create coherent images.</p>
+    <h3 class="card-title">LoRA Strength Limits</h3>
+    <p>Another interesting thing I observed is that both LoRAs have different limits regarding the LoRA strength. While the Low Poly LoRA already starts breaking beyond a strength of about 1.5, the Found Footage LoRA can go up to 2 on specific prompts and still create coherent images.</p>
 
     <p class="label-bold">Example Palm Tree</p>
     <img src="01_assets/01_images/Lora_Strength_FoundFootage.jpg" alt="" />
@@ -817,7 +817,7 @@ a:hover {
     <p class="label-bold">Example Watermelon</p>
     <img src="01_assets/01_images/Lora_Strength_LowPoly.jpg" alt="" />
 
-    <p>Setting the strength a bit higher makes the style the LoRas were trained on more visible, to the point where the extra descriptive words explained before are not needed anymore. The best results can be achieved when combining descriptive words with a higher LoRa strength setting.</p>
+    <p>Setting the strength a bit higher makes the style the LoRAs were trained on more visible, to the point where the extra descriptive words explained before are not needed anymore. The best results can be achieved when combining descriptive words with a higher LoRA strength setting.</p>
 
     <p class="label-bold">Example Palm Tree</p>
     <div class="gen-row">
@@ -827,7 +827,7 @@ a:hover {
         </div>
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1</span>
           <span>Prompt: A palm tree on a deserted island at night ffz8 style<br>Negative Prompt: /</span>
           <span>Seed: 150</span><span>Steps: 40</span><span>CFG: 6.5</span>
         </div>
@@ -839,7 +839,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1.6</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1.6</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island lpyx7 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -857,7 +857,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: 1.3</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: 1.3</span>
            <div class="param-divider"></div>
           <span>Prompt: A palm tree on a deserted island at night ffz8 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -879,7 +879,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Low Poly<br>LoRa Strength: 1</span>
+          <span>LoRA: Low Poly<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: a watermelon laying on a forest floor low poly lpyx7 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -897,7 +897,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Low Poly<br>LoRa Strength: 1.3</span>
+          <span>LoRA: Low Poly<br>LoRA Strength: 1.3</span>
            <div class="param-divider"></div>
           <span>Prompt: a watermelon laying on a forest floor lpyx7 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -915,7 +915,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Low Poly<br>LoRa Strength: 1.1</span>
+          <span>LoRA: Low Poly<br>LoRA Strength: 1.1</span>
            <div class="param-divider"></div>
           <span>Prompt: a watermelon laying on a forest floor low poly lpyx7 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -935,7 +935,7 @@ a:hover {
     <p>The inference steps determine the number of denoising iterations the AI performs, where more steps gradually refine a noisy starting image into a more detailed final output.</p>
     <p>The CFG (Classifier-Free Guidance) Scale controls how closely the model adheres to your prompt, with higher values forcing strict obedience to your text and lower values allowing the AI more creative freedom. Together, they balance the physical rendering quality of your image against its conceptual accuracy.</p>
 
-    <p class="label-bold">No LoRa selected</p>
+    <p class="label-bold">No LoRA selected</p>
     <div class="gen-row1">
       <div class="gen-item"><div class="gen-img">
         <img src="01_assets/01_images/cfg_steps_grid_01.jpg" alt="" />
@@ -943,7 +943,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: None<br>LoRa Strength: /</span>
+          <span>LoRA: None<br>LoRA Strength: /</span>
            <div class="param-divider"></div>
           <span>Prompt: a sheep jumping on a hill low poly lpyx7 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -957,7 +957,7 @@ a:hover {
     </div>
    
 
-    <p class="label-bold">Low Poly LoRa selected</p>
+    <p class="label-bold">Low Poly LoRA selected</p>
     <div class="gen-row1">
       <div class="gen-item"><div class="gen-img">
         <img src="01_assets/01_images/cfg_steps_grid_02.jpg" alt="" />
@@ -965,7 +965,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Low Poly<br>LoRa Strength: 1</span>
+          <span>LoRA: Low Poly<br>LoRA Strength: 1</span>
            <div class="param-divider"></div>
           <span>Prompt: a cut open orange low poly lpyx7 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -979,7 +979,7 @@ a:hover {
     </div>
   
 
-    <p class="label-bold">Found Footage LoRa selected</p>
+    <p class="label-bold">Found Footage LoRA selected</p>
     <div class="gen-row1">
       <div class="gen-item"><div class="gen-img">
         <img src="01_assets/01_images/cfg_steps_grid_03.jpg" alt="" />
@@ -987,7 +987,7 @@ a:hover {
         <div class="gen-params">
           <span>Model: Base SD 1.5</span>
            <div class="param-divider"></div>
-          <span>LoRa: Found Footage<br>LoRa Strength: /</span>
+          <span>LoRA: Found Footage<br>LoRA Strength: /</span>
            <div class="param-divider"></div>
           <span>Prompt: A big birthday present in a dark forest at night ffz8 style<br>Negative Prompt: /</span>
            <div class="param-divider"></div>
@@ -1006,10 +1006,10 @@ a:hover {
     <h2 class="section-heading">Difficulties</h2>
   </div>
 
-  <!-- Difficulty 1: Failed LoRa -->
+  <!-- Difficulty 1: Failed LoRA -->
   <div class="card gap-lg">
-    <h3 class="card-title">Failed LoRa</h3>
-    <p>In the beginning I tried training a LoRa on the style of old CGI renderings specifically from the program Bryce. I thought it would be a nice concept to use this new AI technology to emulate the look of old computer graphics. Even though I liked the style I came to the conclusion that a big part of the appeal these references had, came from the overall composition and surreal objects placed in the scenes and less from the basic shaders, colors or lighting. The images I found were also too different from each other so that I had a hard time choosing which ones would work. This idea evolved into the Low Poly LoRa, for which I found better reference images with consistent style.</p>
+    <h3 class="card-title">Failed LoRA</h3>
+    <p>In the beginning I tried training a LoRA on the style of old CGI renderings specifically from the program Bryce. I thought it would be a nice concept to use this new AI technology to emulate the look of old computer graphics. Even though I liked the style I came to the conclusion that a big part of the appeal these references had, came from the overall composition and surreal objects placed in the scenes and less from the basic shaders, colors or lighting. The images I found were also too different from each other so that I had a hard time choosing which ones would work. This idea evolved into the Low Poly LoRA, for which I found better reference images with consistent style.</p>
 
     <p class="label-bold">Bryce rendering Examples:</p>
     <div class="img-grid3">
@@ -1032,13 +1032,13 @@ a:hover {
   <!-- Difficulty 2: Trigger word -->
   <div class="card gap-lg">
     <h3 class="card-title">Trigger word</h3>
-    <p>I had difficulty defining a fitting trigger word. During my first attempt at training the Low Poly LoRa I used the instance prompt &ldquo;low poly sks&rdquo; which I also added to every text file I uploaded for training alongside the images. The problem with this trigger phrase was, that I could not compare the image generated with the LoRa vs without the LoRa, since &ldquo;low poly&rdquo; always activated the Low Poly LoRa. This meant I had to remove these words from the prompt, resulting in much more realistic generations when the LoRa is inactive. I could not compare the low poly style the Stable Diffusion model inherently comes with to my trained LoRa which is why I decided to retrain with the new trigger word &ldquo;lpyx7 style&rdquo;. Because the AI has no prior bias towards the new word &ldquo;lpyx7&rdquo; it does not influence the generated images with ideas or concept it already knows. The word &ldquo;style&rdquo; helps the AI figure out what this new word represents, supporting the training stage.</p>
+    <p>I had difficulty defining a fitting trigger word. During my first attempt at training the Low Poly LoRA I used the instance prompt &ldquo;low poly sks&rdquo; which I also added to every text file I uploaded for training alongside the images. The problem with this trigger phrase was, that I could not compare the image generated with the LoRA vs without the LoRA, since &ldquo;low poly&rdquo; always activated the Low Poly LoRA. This meant I had to remove these words from the prompt, resulting in much more realistic generations when the LoRA is inactive. I could not compare the low poly style the Stable Diffusion model inherently comes with to my trained LoRA which is why I decided to retrain with the new trigger word &ldquo;lpyx7 style&rdquo;. Because the AI has no prior bias towards the new word &ldquo;lpyx7&rdquo; it does not influence the generated images with ideas or concept it already knows. The word &ldquo;style&rdquo; helps the AI figure out what this new word represents, supporting the training stage.</p>
   </div>
 
   <!-- Difficulty 3: Cropping and background -->
   <div class="card gap-lg">
     <h3 class="card-title">Cropping and background</h3>
-    <p>For the Low Poly dataset I used only images of objects or characters that centered on a white background with sufficient gaps towards the borders. When selecting this LoRa and generating an image, I realized that the subject is often cropped and placed way too big within the generated image. I found that using the canny edge function in the ControlNet on a low setting can sometimes fix this issue. Also the background is almost never purely white, it often has a light structure or color.</p>
+    <p>For the Low Poly dataset I used only images of objects or characters that centered on a white background with sufficient gaps towards the borders. When selecting this LoRA and generating an image, I realized that the subject is often cropped and placed way too big within the generated image. I found that using the canny edge function in the ControlNet on a low setting can sometimes fix this issue. Also the background is almost never purely white, it often has a light structure or color.</p>
   </div>
 
   <!-- ========== SOCIETAL IMPACT ========== -->
@@ -1053,7 +1053,8 @@ a:hover {
     <p>This project is built using models and tools:<br>
       Stable Diffusion 1.5 &ndash; Developed by Runway and Stability AI.<br>
       DreamShaper &ndash; The fine-tuned model created by Lykon.<br>
-      Gradio &ndash; The web interface framework developed by Hugging Face and the open-source community. The spelling was checked and altered by Claude.</p>
+      Gradio &ndash; The web interface framework developed by Hugging Face and the open-source community. <br>
+      The spelling was checked and altered by Claude.</p>
   </div>
 
 </div>
